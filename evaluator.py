@@ -14,7 +14,7 @@ class Evaluator:
         self.filename = os.path.join("results","results.csv")
         if not os.path.exists(self.filename):
             with open(self.filename, 'w') as file:
-                file.write("algorithm,rows,columns,time,target_size,final_size,"
+                file.write("algorithm,dataset,rows,columns,time,target_size,final_size,"
                            "r2_original,r2_train,r2_test,"
                            "rmse_original,rmse_train,rmse_test,"
                            "selected_features\n")
@@ -36,7 +36,7 @@ class Evaluator:
 
             with open(self.filename, 'a') as file:
                 file.write(
-                    f"{algorithm_name},{dataset.count_rows()},"
+                    f"{algorithm_name},{dataset},{dataset.count_rows()},"
                     f"{dataset.count_features()},{round(elapsed_time,2)},{target_feature_size},{final_indices},"
                     f"{r2_original},{r2_reduced_train},{r2_reduced_test},"
                     f"{rmse_original},{rmse_reduced_train},{rmse_reduced_test},"

@@ -4,15 +4,14 @@ if __name__ == '__main__':
     algorithms = ["mi","sfs","lasso","fsdr"]
     algorithms = ["fsdr"]
     datasets = ["original",
-                "dataset_4200_21782.csv",
-                "dataset_525_21782.csv",
-                "dataset_66_21782.csv",
-                "dataset_4200_871.csv",
-                "dataset_525_871.csv"
+                "downscaled_525",
+                "downscaled_66",
+                "truncated_4200",
+                "truncated_525"
                 ]
-    #datasets = ["dataset_525_871.csv"]
+    datasets = ["truncated_525"]
     sizes = [2, 5, 10, 15, 20]
-    #sizes = [2, 5]
+    sizes = [5]
     tasks = []
     for dataset in datasets:
         for algorithm in algorithms:
