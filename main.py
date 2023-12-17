@@ -2,7 +2,7 @@ from evaluator import Evaluator
 
 if __name__ == '__main__':
     algorithms = ["mi","sfs","lasso","fsdr"]
-    algorithms = ["fsdr"]
+    #algorithms = ["fsdr"]
     datasets = ["original",
                 "downscaled_525",
                 "downscaled_66",
@@ -11,7 +11,7 @@ if __name__ == '__main__':
                 ]
     datasets = ["truncated_525"]
     sizes = [2, 5, 10, 15, 20]
-    sizes = [5]
+    #sizes = [5]
     tasks = []
     for dataset in datasets:
         for algorithm in algorithms:
