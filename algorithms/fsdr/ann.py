@@ -23,6 +23,10 @@ class ANN(nn.Module):
 
         self.x = None
 
+        self.num_trainable_params = sum(p.numel() for p in self.parameters() if p.requires_grad)
+        print(f"Number of trainable parameters in the model: {self.num_trainable_params}")
+
+
     def forward(self, x, spline):
         x = self.indexer(x)
         self.x = torch.mean(x, dim=0)
