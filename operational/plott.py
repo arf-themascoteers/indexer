@@ -38,10 +38,10 @@ def plot_me_plz(filename):
 
 
 if __name__ == "__main__":
-    plot_me_plz("../results/original/fscr-True-5-1701956357689749.csv")
+    plot_me_plz("../results/original/fsdr-True-5-1701956357689749.csv")
     exit(0)
     dirr = "../results"
     for f in os.listdir(dirr):
-        if f.startswith("fscr"):
+        if f.startswith("fsdr"):
             p = os.path.join(dirr, f)
             plot_me_plz(p)
