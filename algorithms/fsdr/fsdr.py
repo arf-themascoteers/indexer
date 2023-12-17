@@ -44,7 +44,9 @@ class FSDR:
         y_validation = torch.tensor(y_validation, dtype=torch.float32).to(self.device)
         for epoch in range(self.epochs):
             y_hat = self.model(X, spline)
-            loss = self.criterion(y_hat, y)
+            loss_1 = self.criterion(y_hat, y)
+            loss_2 = self.stds()
+            loss = loss_1 + loss_2
             loss.backward()
             optimizer.step()
             optimizer.zero_grad()
@@ -87,9 +89,8 @@ class FSDR:
         return row
 
     def indexify_raw_index(self, raw_index):
+        raw_index = torch.mean(raw_index, dim=0)
         multiplier = self.original_feature_size
-        if not self.sigmoid:
-            multiplier = multiplier-1
         return round(raw_index.item() * multiplier)
 
     def get_indices(self):
@@ -98,3 +99,7 @@ class FSDR:
 
     def transform(self, X):
         return X[:,self.get_indices()]
+
+
+    def stds(self):
+        return torch.sum(torch.cat([torch.std(p, dim=0).reshape(1) for p in self.model.get_indices()], dim=0))

@@ -27,10 +27,10 @@ class ANN(nn.Module):
         print(f"Number of trainable parameters in the model: {self.num_trainable_params}")
 
 
-    def forward(self, x, spline):
-        x = self.indexer(x)
-        self.x = torch.mean(x, dim=0)
-        outputs = torch.cat([spline.evaluate(i).reshape(-1,1) for i in self.x], dim=1)
+    def forward(self, x, splines):
+        self.x = x
+        batch_indices = self.indexer(self.x)
+        outputs = torch.cat([splines[i].evaluate(batch_indices[i]).reshape(1,-1) for i in range(batch_indices.shape[0])], dim=0)
         soc_hat = self.linear(outputs)
         soc_hat = soc_hat.reshape(-1)
         return soc_hat
@@ -38,5 +38,6 @@ class ANN(nn.Module):
     def get_indices(self):
         if self.x is None:
             return [-1 for i in range(self.target_feature_size)]
-        return self.x
+        return self.indexer(self.x)
+
 
