@@ -45,7 +45,7 @@ class FSDR:
         for epoch in range(self.epochs):
             y_hat = self.model(X, spline)
             loss_1 = self.criterion(y_hat, y)
-            loss_2 = self.stds()
+            loss_2 = 0
             loss = loss_1 + loss_2
             loss.backward()
             optimizer.step()

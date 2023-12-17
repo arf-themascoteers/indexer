@@ -21,27 +21,27 @@ class ANN(nn.Module):
             nn.Linear(10,1)
         )
 
-        self.x = None
+        self.indices = None
 
         self.num_trainable_params = sum(p.numel() for p in self.parameters() if p.requires_grad)
         print(f"Number of trainable parameters in the model: {self.num_trainable_params}")
 
 
-    def forward(self, x, splines):
-        self.x = x
-        batch_indices = self.indexer(self.x)
-        outputs = torch.cat([splines[i].evaluate(batch_indices[i]).reshape(1,-1) for i in range(batch_indices.shape[0])], dim=0)
+    def forward(self, x, spline):
+        x = self.indexer(x)
+        self.indices = torch.mean(x, dim=0)
+        outputs = torch.cat([spline.evaluate(i).reshape(-1,1) for i in self.indices], dim=1)
         soc_hat = self.linear(outputs)
         soc_hat = soc_hat.reshape(-1)
         return soc_hat
 
     def get_indices(self):
-        if self.x is None:
+        if self.indices is None:
             return [-1 for i in range(self.target_feature_size)]
-        return torch.mean(self.indexer(self.x), dim=0)
+        return self.indexer(self.indices)
 
 
     def get_indices_batch(self):
-        return self.indexer(self.x)
+        return self.indexer(self.indices)
 
 
