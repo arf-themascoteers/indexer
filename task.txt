@@ -3,3 +3,4 @@ mean vs not mean
 --non-mean: branch non_mean
 
 maximize std?
+relu(3-diff) ?
