@@ -38,6 +38,10 @@ class ANN(nn.Module):
     def get_indices(self):
         if self.x is None:
             return [-1 for i in range(self.target_feature_size)]
+        return torch.mean(self.indexer(self.x), dim=0)
+
+
+    def get_indices_batch(self):
         return self.indexer(self.x)
 
 

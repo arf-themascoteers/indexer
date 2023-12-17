@@ -102,4 +102,4 @@ class FSDR:
 
 
     def stds(self):
-        return torch.sum(torch.cat([torch.std(p, dim=0).reshape(1) for p in self.model.get_indices()], dim=0))
+        return torch.sum(torch.cat([torch.std(p, dim=0).reshape(1) for p in self.model.get_indices_batch()], dim=0))
