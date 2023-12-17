@@ -2,7 +2,7 @@ from evaluator import Evaluator
 
 if __name__ == '__main__':
     algorithms = ["mi","sfs","lasso","fsdr"]
-    algos = ["lasso"]
+    algorithms = ["lasso"]
     datasets = ["original",
                 "dataset_4200_21782.csv",
                 "dataset_525_21782.csv",
