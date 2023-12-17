@@ -38,7 +38,7 @@ class ANN(nn.Module):
     def get_indices(self):
         if self.indices is None:
             return [-1 for i in range(self.target_feature_size)]
-        return self.indexer(self.indices)
+        return self.indices
 
 
     def get_indices_batch(self):
