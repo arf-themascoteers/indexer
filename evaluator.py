@@ -22,14 +22,11 @@ class Evaluator:
     def evaluate(self):
         for task in self.tasks:
             print(task)
-            reduced_features = task["reduced_features"]
-            reduced_rows = task["reduced_rows"]
+            dataset_name = task["dataset"]
             target_feature_size = task["target_feature_size"]
             algorithm_name = task["algorithm"]
-            dataset = DSManager(reduced_features=reduced_features, reduced_rows=reduced_rows)
-            # if self.is_done(algorithm_name, dataset, target_feature_size):
-            #     print("Done already. Skipping.")
-            #     continue
+            dataset = DSManager(ds_name=dataset_name)
+
             elapsed_time, r2_original, rmse_original, \
                 r2_reduced_train, rmse_reduced_train, \
                 r2_reduced_test, rmse_reduced_test, \

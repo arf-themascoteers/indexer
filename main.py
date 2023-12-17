@@ -1,20 +1,25 @@
 from evaluator import Evaluator
 
 if __name__ == '__main__':
-    algos = ["mi","sfs","lasso","fsdr"]
-    algos = ["fsdr"]
-    datasets = [(False, False), (True, False), (False, True)]
-    datasets = [(False, True)]
+    algorithms = ["mi","sfs","lasso","fsdr"]
+    algos = ["lasso"]
+    datasets = ["original",
+                "dataset_4200_21782.csv",
+                "dataset_525_21782.csv",
+                "dataset_66_21782.csv",
+                "dataset_4200_871.csv",
+                "dataset_525_871.csv"
+                ]
+    datasets = ["dataset_525_871.csv"]
     sizes = [2, 5, 10, 15, 20]
-    sizes = [2, 5, 10]
+    sizes = [2, 5]
     tasks = []
-    for reduced_features, reduced_rows in datasets:
-        for algorithm in algos:
+    for dataset in datasets:
+        for algorithm in algorithms:
             for size in sizes:
                 tasks.append(
                     {
-                        "reduced_features":reduced_features,
-                        "reduced_rows":reduced_rows,
+                        "dataset": dataset,
                         "target_feature_size": size,
                         "algorithm": algorithm
                     }
