@@ -1,2 +1,5 @@
 mean vs not mean
 --current not mean
+--non-mean: branch non_mean
+
+maximize std?
